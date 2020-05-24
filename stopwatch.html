@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/9a350c6454.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <title>Stopwatch</title>
+        <style>
+            body{
+                background-image: url('https://image.freepik.com/free-vector/abstract-technology-background-web-developer-computer-code_88211-423.jpg');
+            }
+            .title{
+                font-size: 35px;
+                font-weight: bolder;
+            }
+            .wrapper {
+                width: 800px;
+                margin: 30px auto;
+                color:rgb(4, 199, 4);
+                text-align:center;
+                background-color: rgba(0, 0, 0, 0.61);
+            }
+            .button {
+                background-color: black; /* Green */
+                border: 2px solid rgb(4, 199, 4);
+                color: rgb(4, 199, 4);
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 25px;
+                margin: 4px 2px;
+                cursor: pointer;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+                border-radius: 6px;
+            }
+            .button1:hover {
+                color:rgb(4, 199, 4);
+                background-color: rgb(56, 55, 55);
+            }
+            .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.61);
+                color: rgb(4, 199, 4);
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="title"><h1>STOPWATCH</h1>
+                <h2>Owens Javascript Stopwatch</h2>
+            </div>
+        
+            <h1><span id="minutes">00</span>:<span id="seconds">00</span>:<span id="milliseconds">00</span></h1>
+            <button class="button button1" id="start">Start</button>
+            <button class="button button1" id="stop">Stop</button>
+            <button class="button button1" id="reset">Reset</button>
+        
+        </div>
+        <div class="footer">
+            <h1>Owen Shade</h1>
+            <a href="https://github.com/OwenShade" target="_blank" class="link"> <i style="color: white;" class="fab fa-github fa-4x" data-toggle="tooltip" title="GitHub"></i> </a>
+            <br><br>
+        </div>
+        
+        
+        <script>
+            window.onload = function(){
+                var seconds = 00;
+                var milliseconds = 00;
+                var minutes = 00;
+                var appendMinutes = document.getElementById("minutes");
+                var appendMilliseconds = document.getElementById("milliseconds");
+                var appendSeconds = document.getElementById("seconds");
+                var start = document.getElementById("start");
+                var stop = document.getElementById("stop");
+                var reset = document.getElementById("reset");
+                var interval;
+
+                start.onclick = function(){
+                    clearInterval(interval);
+                    interval = setInterval(startTimer, 10);
+                }
+
+                stop.onclick = function(){
+                    clearInterval(interval);
+                }
+
+                reset.onclick = function(){
+                    clearInterval(interval);
+                    milliseconds="00";
+                    seconds="00";
+                    minutes="00";
+                    appendMinutes.innerHTML = minutes;
+                    appendMilliseconds.innerHTML = milliseconds;
+                    appendSeconds.innerHTML = seconds;
+                }
+
+                function startTimer(){
+                    milliseconds++;
+
+                    if(milliseconds<9){
+                        appendMilliseconds.innerHTML="0"+milliseconds;
+                    }
+                    if(milliseconds>9){
+                        appendMilliseconds.innerHTML=milliseconds;
+                    }
+                    if(milliseconds>99){
+                        console.log("seconds");
+                        seconds++;
+                        appendSeconds.innerHTML="0"+seconds;
+                        milliseconds=0;
+                        appendMilliseconds.innerHTML= "0" + 0;
+                    }
+                    if(seconds>9){
+                        appendSeconds.innerHTML=seconds;
+                    }
+                    if(seconds>59){
+                        console.log("minutes");
+                        minutes++;
+                        appendMinutes.innerHTML="0"+minutes;
+                        seconds=0;
+                        appendSeconds.innerHTML="0" + 0;
+                    }
+                    if(minutes>9){
+                        appendMinutes.innerHTML=minutes;
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
